@@ -7,7 +7,9 @@ export class SendEmailDto {
 
   subject: string;
 
-  html: string;
+  text?: string;
+
+  html?: string;
 
   sender?: string;
 }
