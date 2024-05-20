@@ -8,6 +8,30 @@ services:
       - ./rmq.env
     networks:
       - network
+  
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    ports:
+      - "3333:3333"
+    depends_on:
+      - rabbitmq
+    env_file:
+      - ./api/.env
+    networks:
+      - network
+  
+  ms-email:
+    build:
+      context: ./ms-email
+      dockerfile: Dockerfile
+    depends_on:
+      - rabbitmq
+    env_file:
+      - ./ms-email/.env
+    networks:
+      - network
 
 networks:
   network:
