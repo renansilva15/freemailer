@@ -16,8 +16,6 @@ export class EmailService {
     ...sendEmailDto
   }: SendEmailDto): Promise<any> {
     try {
-      console.log(sendEmailDto);
-
       return await this.emailTransporterProvider.sendMail({
         ...sendEmailDto,
         from: { name: sender, address: this.emailUser },
