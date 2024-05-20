@@ -1,12 +1,13 @@
-import { MailOptions } from 'nodemailer/lib/sendmail-transport';
-import { Address } from 'nodemailer/lib/mailer';
-
+class Address {
+  name: string;
+  address: string;
+}
 export class SendEmailDto {
-  mailOptions: MailOptions & {
-    to: string | Address | Array<string | Address>;
-    subject: string;
-    html: string;
-  };
+  to: string | Address | Array<string | Address>;
 
-  from?: string;
+  subject: string;
+
+  html: string;
+
+  sender?: string;
 }

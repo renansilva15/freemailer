@@ -17,7 +17,7 @@ export class AppController {
   }
 
   @EventPattern('send_email')
-  handleSendEmail(@Payload() data: SendEmailDto) {
-    this.emailService.sendEmail(data);
+  handleSendEmail(@Payload() sendEmailDto: SendEmailDto) {
+    this.emailService.sendEmail(sendEmailDto);
   }
 }

@@ -7,16 +7,20 @@ export class EmailService {
   constructor(
     @Inject('EMAIL_PROVIDER')
     private readonly emailTransporterProvider: Transporter,
+    @Inject('EMAIL_USER')
+    private readonly emailUser: string,
   ) {}
 
   async sendEmail({
-    mailOptions,
-    from = 'Freemailer',
+    sender = 'Freemailer',
+    ...sendEmailDto
   }: SendEmailDto): Promise<any> {
     try {
+      console.log(sendEmailDto);
+
       return await this.emailTransporterProvider.sendMail({
-        ...mailOptions,
-        from,
+        ...sendEmailDto,
+        from: { name: sender, address: this.emailUser },
       });
     } catch (error) {
       console.error(error);
