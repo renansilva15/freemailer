@@ -1,5 +1,6 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, ValidationPipe } from '@nestjs/common';
 import { AppService } from './app.service';
+import { SendEmailDto } from './dto/send-email.dto';
 
 @Controller()
 export class AppController {
@@ -11,9 +12,9 @@ export class AppController {
   }
 
   @Post('send-email')
-  async sendEmail(@Body() data: any) {
-    await this.appService.sendEmail(data);
+  async sendEmail(@Body(ValidationPipe) sendEmailDto: SendEmailDto) {
+    await this.appService.sendEmail(sendEmailDto);
 
-    return { message: 'Email sent!' };
+    return { message: 'Email add to queue!' };
   }
 }
