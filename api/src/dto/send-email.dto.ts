@@ -9,9 +9,15 @@ export class SendEmailDto {
   @IsNotEmpty()
   subject: string;
 
+  @IsOptional()
   @IsString()
   @IsNotEmpty()
-  html: string;
+  text?: string;
+
+  @IsOptional()
+  @IsString()
+  @IsNotEmpty()
+  html?: string;
 
   @IsOptional()
   @IsString()
