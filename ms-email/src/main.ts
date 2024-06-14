@@ -3,6 +3,7 @@ import { AppModule } from './app.module';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 import * as express from 'express';
 import { ConfigService } from '@nestjs/config';
+import cors from 'cors';
 
 async function bootstrap() {
   const app = await NestFactory.createMicroservice<MicroserviceOptions>(
@@ -22,6 +23,8 @@ async function bootstrap() {
   await app.listen();
 
   const dummyServer = express()
+
+  dummyServer.use(cors())
 
   dummyServer.get('/', (req, res) => {
     res.send('Hello World!')
